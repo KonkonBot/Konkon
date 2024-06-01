@@ -14,6 +14,7 @@ export class KonkonClient extends Client {
 			context: KonkonContext,
 			commands: {
 				prefix: (msg) => this.prefixes.getPrefix(msg.guildId),
+				// @ts-expect-error: KYS :3
 				argsParser: YunaParser(),
 				reply: () => true,
 			},

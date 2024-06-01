@@ -8,8 +8,8 @@
   "author": "@chewawi",
   "license": "ISC",
   "dependencies": {
-    "@konkon/db": "workspace:*",
     "@konkon/config": "workspace:*",
+    "@konkon/db": "workspace:*",
     "@types/lodash": "^4.17.4",
     "drizzle-orm": "^0.30.10",
     "elysia": "^1.0.22",
