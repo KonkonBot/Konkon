@@ -8,24 +8,73 @@ The locale file structure is as follows:
 
 - `src/locales/en.ts`: This file contains the English locale file.
 - `src/locales/es.ts`: This file contains the Spanish locale file.
-- `src/locales/fr.ts`: This file contains the French locale file.
-- `src/locales/de.ts`: This file contains the German locale file.
-- `src/locales/it.ts`: This file contains the Italian locale file.
-- `src/locales/pt.ts`: This file contains the Portuguese locale file.
-- `src/locales/ru.ts`: This file contains the Russian locale file.
 
-## Locale File Format
+## Locale File Example
 
-The locale file format is as follows:
+Here is an example of a locale file:
 
 ```ts
 export default {
-  "en": {
-    "commands": {
-      "hello": (name) => `Hello ${name}!`,
-    }
-  }
-} satisfies typeof defaultLang;
+  "commands": {
+    "hello": (name) => `Hello ${name}!`,
+    "test": {
+      "description": "This is a test command.",
+      "errors": {
+        "notFound": (name) => `The user ${name} was not found.`,
+      },
+    },
+  },
+};
 ```
 
-In this example, the `en` key is the language code, and the `commands` key is the command name. The value of each command is a function that takes a `name` parameter and returns a string.
+In this example, we have a locale file named `en.ts` that contains the English locale file.
+
+## Locale File Usage
+
+To use a locale file, you need to import it in your code and use the `t` function to access the messages and commands.
+
+```ts
+const t = ctx.t.commands.hello.get(await ctx.locale());
+
+const name = "John";
+const message = t.commands.hello(name);
+```
+
+## Locale File Syntax
+
+### Messages
+
+Messages are defined using the `t` function and the locale file key.
+
+```ts
+const message = t.commands.hello(name);
+```
+
+### Commands
+
+```ts
+const command = t.commands.test.description;
+```
+
+### Errors
+
+```ts
+if (!user)
+  return t.errors.notFound(name);
+```
+
+### Embeds
+
+```ts
+const embed = new Embed()
+  .setTitle(t.embed.title)
+  .setDescription(t.embed.description);
+```
+
+### Locale File Keys
+
+Locale file keys are defined using the `commands`, `errors`, and `embed` keys.
+
+- `commands`: This key is used to define the commands in the locale file.
+- `errors`: This key is used to define the errors in the locale file.
+- `embed`: This key is used to define the embeds in the locale file.
