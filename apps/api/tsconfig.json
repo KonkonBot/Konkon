@@ -1,9 +1,12 @@
 {
-  // "extends": "@konkon/config/base.json",
+  "extends": "@konkon/config/base.json",
   "compilerOptions": {
-    "strict": true,
+    "lib": ["ESNext"],
+    "module": "CommonJS",
+    "target": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "rootDir": "./src",
+    "outDir": "./dist"
   },
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src"]
 }

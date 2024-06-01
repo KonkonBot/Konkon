@@ -1,7 +1,6 @@
-import { treaty } from "@elysiajs/eden";
 import { getLocale } from "@konkon/db";
 import { extendContext } from "seyfert";
-import type { konkonAPI } from "../../index";
+import * as services from "./services";
 
 export const KonkonContext = extendContext((ctx) => {
 	return {
@@ -10,7 +9,7 @@ export const KonkonContext = extendContext((ctx) => {
 			"@mentallyillbassist": "788869971073040454",
 			"@kingbcats": "1125490330679115847",
 		},
-		api: treaty<typeof konkonAPI>("localhost:3080"),
+		services,
 		locale: getLocale(ctx),
 	};
 });

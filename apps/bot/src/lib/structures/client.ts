@@ -1,7 +1,6 @@
 import { dbClient } from "@konkon/db";
 import { Client, type ParseClient, type ParseLocales, type ParseMiddlewares } from "seyfert";
 import { YunaParser } from "yunaforseyfert";
-import type { konkonAPI } from "../../index";
 import type defaultLang from "../../locales/en";
 import { middlewares } from "../../middlewares";
 import { KonkonContext } from "./context";
@@ -10,7 +9,7 @@ import PrefixManager from "./managers/prefix";
 export class KonkonClient extends Client {
 	prefixes: PrefixManager;
 
-	constructor(public api: typeof konkonAPI) {
+	constructor() {
 		super({
 			context: KonkonContext,
 			commands: {
@@ -23,7 +22,6 @@ export class KonkonClient extends Client {
 			},
 		});
 
-		this.api = api;
 		this.prefixes = new PrefixManager(this);
 
 		this.configureServices();
