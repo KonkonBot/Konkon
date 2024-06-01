@@ -1,0 +1,11 @@
+{
+  "name": "@konkon/akore",
+  "module": "src/index.ts",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "akore": "^1.8.1"
+  }
+}

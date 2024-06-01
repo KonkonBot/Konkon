@@ -1,0 +1,35 @@
+{
+  "name": "konkon",
+  "private": true,
+  "scripts": {
+    "bot": "bun run --filter bot",
+    "api": "bun run --filter api",
+    "db": "bun --filter @konkon/db"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "^1.7.3",
+    "@types/bun": "latest"
+  },
+  "module": "index.ts",
+  "type": "module",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@elysiajs/eden": "^1.0.13",
+    "akore": "github:Pavez7274/akore#dev",
+    "elysia": "^1.0.20",
+    "elysia-decorators": "^1.0.0",
+    "mdbox": "^0.1.0",
+    "microsoft-translate-api": "git@github.com:Chewawi/microsoft-translate-api.git"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome",
+    "akore",
+    "es5-ext"
+  ]
+}

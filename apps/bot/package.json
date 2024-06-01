@@ -1,0 +1,31 @@
+{
+  "name": "bot",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts"
+  },
+  "keywords": [],
+  "author": "@chewawi",
+  "license": "ISC",
+  "dependencies": {
+    "@konkon/db": "workspace:*",
+    "@types/lodash": "^4.17.4",
+    "drizzle-orm": "^0.30.10",
+    "elysia": "1.0.22",
+    "lodash": "^4.17.21",
+    "microsoft-translate-api": "git@github.com:Chewawi/microsoft-translate-api.git",
+    "pg": "^8.11.5",
+    "pg-listen": "^1.7.0",
+    "seyfert": "^1.4.0",
+    "yunaforseyfert": "^0.10.3"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.5.7",
+    "@types/node": "^20.3.1",
+    "@types/pg": "^8.11.6",
+    "drizzle-kit": "^0.21.4",
+    "tsc-watch": "^6.2.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.1.3"
+  }
+}

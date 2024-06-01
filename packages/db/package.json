@@ -1,0 +1,30 @@
+{
+  "name": "@konkon/db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src",
+  "files": ["src/**"],
+  "scripts": {
+    "push": "bunx drizzle-kit migrate",
+    "drop": "bunx drizzle-kit drop",
+    "generate": "bunx drizzle-kit generate",
+    "studio": "bunx drizzle-kit studio"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.3.1",
+    "@types/pg": "^8.11.6",
+    "drizzle-kit": "^0.21.4",
+    "tsup": "^8.0.2"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.3",
+    "db0": "^0.1.4",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.30.10",
+    "pg": "^8.11.5",
+    "typescript": "^5.1.3"
+  }
+}

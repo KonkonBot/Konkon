@@ -1,0 +1,23 @@
+{
+	// "extends": "@konkon/config/base.json",
+	"compilerOptions": {
+		"lib": [
+			"ES2015"
+		],
+		"outDir": "./dist",
+		"types": [
+			"node",
+			"bun-types"
+		],
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true
+	},
+	"include": [
+		"src/**/*"
+, "../../packages/db/src/functions/guilds.ts", "src/lib/database/tags.ts"	],
+	"exclude": [
+		"node_modules",
+		"dist"
+	]
+}

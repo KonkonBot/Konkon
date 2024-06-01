@@ -1,0 +1,10 @@
+{
+	"extends": "@konkon/config/base.json",
+	"compilerOptions": {
+		"paths": {
+			"@konkon/*": [
+				"./*", "./packages/*"
+			]
+		}
+	}
+}
