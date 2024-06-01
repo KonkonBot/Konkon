@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { KonkonClient } from "./lib/structures/client";
 
 const client = new KonkonClient();
