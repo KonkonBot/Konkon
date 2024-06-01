@@ -8,6 +8,7 @@
   "author": "@chewawi",
   "license": "ISC",
   "dependencies": {
+    "@elysiajs/eden": "^1.0.14",
     "@konkon/config": "workspace:*",
     "@konkon/db": "workspace:*",
     "@types/lodash": "^4.17.4",
@@ -16,7 +17,7 @@
     "lodash": "^4.17.21",
     "pg": "^8.11.5",
     "pg-listen": "^1.7.0",
-    "seyfert": "^1.4.0",
+    "seyfert": "github:tiramisulabs/seyfert",
     "yunaforseyfert": "^0.10.3"
   },
   "devDependencies": {

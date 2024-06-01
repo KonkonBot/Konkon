@@ -12,7 +12,7 @@
 	},
 	"include": [
 		"src/**/*"
-, "../../packages/db/src/functions/guilds.ts", "src/lib/database/tags.ts"	],
+	],
 	"exclude": [
 		"node_modules",
 		"dist"

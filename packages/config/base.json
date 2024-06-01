@@ -14,7 +14,7 @@
 		"strictNullChecks": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"types": ["bun-types"]
+		"types": ["@types/bun-types"]
 	},
 	"preserveSymlinks": true,
 	"exclude": ["node_modules"]
