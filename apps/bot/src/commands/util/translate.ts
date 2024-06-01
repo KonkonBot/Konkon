@@ -37,7 +37,7 @@ export default class UtilTranslateCommand extends SubCommand {
 		const { text, to, from } = ctx.options;
 		const formattedTarget = to.trim().split(/[\s,]+/g);
 
-		const { data } = await ctx.api.porter.translate.post({
+		const { data } = await ctx.services.api.porter.translate.post({
 			text,
 			to: formattedTarget,
 			from,
@@ -46,9 +46,7 @@ export default class UtilTranslateCommand extends SubCommand {
 		const translations = data?.translations ?? [];
 
 		const translationEmbed = new Embed()
-			.setTitle(
-				`Translated from ${data?.detectedLanguage?.language ?? from} to ${to}`,
-			)
+			.setTitle(`Translated from ${data?.detectedLanguage?.language ?? from} to ${to}`)
 			.addFields(
 				{
 					name: "Original",

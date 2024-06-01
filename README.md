@@ -16,3 +16,9 @@ The best Discord bot ever :3
 
 * GitHub [@chewawi](https://github.com/Chewawi)
 * Twitter [@che_wawi](https://x.com/che_wawi)
+
+## Credits
+
+* [Akashi](https://github.com/akashibot/akashi/) for the "services" idea. :3
+* [HirakuShinzou](https://github.com/OpenWaifu-Project/HirakuShinzou/) for the the project structure. >:3
+* [Seyfert](https://github.com/Seyfert) for the framework. :heart:
