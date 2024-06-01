@@ -1,11 +1,17 @@
-import { createEnv } from "@t3-oss/env-core";
-import { z } from "zod";
+import dotenv from "dotenv";
 
-export const env = createEnv({
-	server: {
-		BOT_TOKEN: z.string(),
-		DATABASE_URL: z.string().url(),
-	},
-
-	runtimeEnv: import.meta.env,
+dotenv.config({
+	path: `${__dirname}/.env`,
 });
+
+export const env: { [key: string]: string } = {
+	BOT_TOKEN: process.env.BOT_TOKEN as string,
+	DATABASE_URL: process.env.DATABASE_URL as string,
+};
+
+for (const key in env) {
+	console.log(key, env[key]);
+	if (!env[key]) {
+		throw new Error(`Missing env variable: ${key}`);
+	}
+}
