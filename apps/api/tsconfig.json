@@ -1,0 +1,9 @@
+{
+  "extends": "@konkon/config/base.json",
+  "compilerOptions": {
+    "strict": true,
+  },
+  "include": [
+    "src/**/*"
+  ],
+}

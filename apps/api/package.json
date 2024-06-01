@@ -1,0 +1,12 @@
+{
+  "name": "api",
+  "version": "1.0.50",
+  "main": "src/index.ts",
+  "type": "module",
+  "dependencies": {
+    "@konkon/db": "workspace:*",
+    "elysia": "^1.0.22",
+    "elysia-autoload": "^0.2.3",
+    "microsoft-translate-api": "git@github.com:Chewawi/microsoft-translate-api.git"
+  }
+}

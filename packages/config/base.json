@@ -20,7 +20,8 @@
 		"noEmit": true,
 		"strictNullChecks": true,
 		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"types": ["bun-types"]
 	},
 	"preserveSymlinks": true,
 	"exclude": ["node_modules"]

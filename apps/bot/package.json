@@ -9,11 +9,11 @@
   "license": "ISC",
   "dependencies": {
     "@konkon/db": "workspace:*",
+    "@konkon/config": "workspace:*",
     "@types/lodash": "^4.17.4",
     "drizzle-orm": "^0.30.10",
-    "elysia": "1.0.22",
+    "elysia": "^1.0.22",
     "lodash": "^4.17.21",
-    "microsoft-translate-api": "git@github.com:Chewawi/microsoft-translate-api.git",
     "pg": "^8.11.5",
     "pg-listen": "^1.7.0",
     "seyfert": "^1.4.0",
