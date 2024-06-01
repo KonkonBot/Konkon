@@ -1,3 +1,4 @@
+import type { schemas } from "@konkon/db";
 import type { CommandContext } from "seyfert";
 
 export default {
@@ -5,7 +6,7 @@ export default {
 		tags: {
 			get: {
 				name: "get",
-				description: "Get a tag. :D",
+				description: "Get a tag.",
 				errors: (ctx: CommandContext) => {
 					return {
 						notFound: (tag: string) => {
@@ -17,7 +18,7 @@ export default {
 				},
 			},
 			add: {
-				description: "Create a new tag. :D",
+				description: "Create a new tag.",
 				modal: {
 					title: "Tag creation",
 					name: {
@@ -25,10 +26,49 @@ export default {
 					},
 					content: {
 						label: "Content",
+						placeholder: "the content of the tag.",
 					},
 				},
 				successMessage: (tag: string) => {
 					return `Tag created: \`${tag}\``;
+				},
+			},
+			edit: {
+				description: "Edit an existing tag.",
+				modal: {
+					title: "Tag update",
+					name: {
+						label: "Name",
+					},
+					content: {
+						label: "Content",
+						placeholder: "the new content of the tag.",
+					},
+				},
+				errorMessage: (tag: string) => {
+					return `Tag not found: \`${tag}\``;
+				},
+				successMessage: (tag: string) => {
+					return `Tag updated: \`${tag}\``;
+				},
+			},
+			list: {
+				description: "List all tags in the server or user.",
+				embed: {
+					title: "Tags",
+					description: (ownerId: string | undefined, guildName: string) => {
+						return ownerId ? `Tags in user: \`<@${ownerId}>\`` : `Tags in server: \`${guildName}\``;
+					},
+					fieldValue: (tag: schemas.Tags["$inferInsert"]) => {
+						return `Owner: <@${tag.ownerId}> | Uses: \`${tag.uses}\``;
+					},
+				},
+				errors: {
+					notFound: (ownerId: string | undefined, guildId: string | undefined) => {
+						return ownerId
+							? `Tags not found for user: \`<@${ownerId}>\``
+							: `Tags not found for server: \`${guildId}\``;
+					},
 				},
 			},
 		},

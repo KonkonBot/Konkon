@@ -1,4 +1,4 @@
-import { getTag } from "@konkon/db";
+import { getTag, updateUses } from "@konkon/db";
 import {
 	type CommandContext,
 	Declare,
@@ -43,6 +43,8 @@ export default class TagGetCommand extends SubCommand {
 		if (!tagResult) {
 			return t.errors(ctx).notFound(tag);
 		}
+
+		await updateUses(tagResult.id);
 
 		const { name, content } = tagResult;
 

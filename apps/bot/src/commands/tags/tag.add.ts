@@ -24,7 +24,7 @@ const options = {
 @Declare({
 	name: "add",
 	aliases: ["create"],
-	description: "Create a new tag. :D",
+	description: "Create a new tag.",
 	contexts: ["GUILD", "PRIVATE_CHANNEL"],
 	integrationTypes: ["GUILD_INSTALL"],
 })
@@ -63,7 +63,7 @@ export default class TagsCreate extends SubCommand {
 		const row2 = new ActionRow<TextInput>().setComponents([contentInput]);
 
 		const modal = new Modal()
-			.setCustomId("@Modal_createTag")
+			.setCustomId("createTag.modal")
 			.setTitle(t.modal.title)
 			.setComponents([row1, row2]);
 

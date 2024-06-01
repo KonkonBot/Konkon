@@ -1,3 +1,4 @@
+import type { schemas } from "@konkon/db";
 import type { CommandContext } from "seyfert";
 import type defaultLang from "./en";
 
@@ -26,10 +27,51 @@ export default {
 					},
 					content: {
 						label: "Contenido",
+						placeholder: "el contenido del tag.",
 					},
 				},
 				successMessage: (tag: string) => {
 					return `Tag creado: \`${tag}\``;
+				},
+			},
+			edit: {
+				description: "Edita un tag existente. :D",
+				modal: {
+					title: "Actualización de tag",
+					name: {
+						label: "Nombre",
+					},
+					content: {
+						label: "Contenido",
+						placeholder: "el nuevo contenido del tag.",
+					},
+				},
+				errorMessage: (tag: string) => {
+					return `Tag no encontrado: \`${tag}\``;
+				},
+				successMessage: (tag: string) => {
+					return `Tag actualizado: \`${tag}\``;
+				},
+			},
+			list: {
+				description: "Lista todos los tags en el servidor o usuario.",
+				embed: {
+					title: "Tags",
+					description: (ownerId: string | undefined, guildName: string) => {
+						return ownerId
+							? `Tags del usuario: <@${ownerId}>`
+							: `Tags del servidor: \`${guildName}\``;
+					},
+					fieldValue: (tag: schemas.Tags["$inferInsert"]) => {
+						return `\t- Creador: <@${tag.ownerId}>\n - Usos: \`${tag.uses}\``;
+					},
+				},
+				errors: {
+					notFound: (ownerId: string | undefined, guildId: string | undefined) => {
+						return ownerId
+							? `Tags no encontrados para usuario: \`${ownerId}\``
+							: `Tags no encontrados para servidor: \`${guildId}\``;
+					},
 				},
 			},
 		},

@@ -1,4 +1,4 @@
-import { createTag, getTags } from "@konkon/db";
+import { getTag, getTags, updateTag } from "@konkon/db";
 import {
 	ActionRow,
 	type CommandContext,
@@ -33,26 +33,29 @@ const options = {
 @Declare({
 	name: "edit",
 	aliases: ["update"],
-	description: "Edit an existing tag. :D",
+	description: "Edit an existing tag.",
 	contexts: ["GUILD", "PRIVATE_CHANNEL"],
 	integrationTypes: ["GUILD_INSTALL"],
 })
 @Options(options)
-@LocalesT(void 0, "commands.tags.add.description")
-export default class TagsCreate extends SubCommand {
+@LocalesT(void 0, "commands.tags.edit.description")
+export default class TagsEdit extends SubCommand {
 	async run(ctx: CommandContext<typeof options>) {
-		const t = ctx.t.commands.tags.add.get(await ctx.locale());
+		const t = ctx.t.commands.tags.edit.get(await ctx.locale());
 
 		const {
 			options: { name, content },
 		} = ctx;
 
-		if (name && content) {
-			await createTag({
-				name,
+		const tag = await getTag(name, ctx.guildId, ctx.author.id);
+
+		if (!tag) {
+			return ctx.write({ content: t.errorMessage(name), components: [] });
+		}
+
+		if (content) {
+			await updateTag(tag.id, {
 				content,
-				guildId: ctx.interaction.guildId,
-				ownerId: ctx.interaction.user.id,
 			});
 
 			return ctx.write({ content: t.successMessage(name), components: [] });
@@ -60,21 +63,23 @@ export default class TagsCreate extends SubCommand {
 
 		const nameInput = new TextInput()
 			.setCustomId("name")
+			.setValue(name)
 			.setStyle(TextInputStyle.Short)
 			.setLabel(t.modal.name.label);
+
 		const contentInput = new TextInput()
 			.setCustomId("content")
+			.setValue(tag.content || "")
 			.setStyle(TextInputStyle.Paragraph)
 			.setLabel(t.modal.content.label);
-		content && contentInput.setValue(content);
 
-		const row1 = new ActionRow<TextInput>().setComponents([nameInput]);
-		const row2 = new ActionRow<TextInput>().setComponents([contentInput]);
+		const row = new ActionRow<TextInput>().setComponents([contentInput]);
+		const row2 = new ActionRow<TextInput>().setComponents([nameInput]);
 
 		const modal = new Modal()
-			.setCustomId("@Modal_createTag")
+			.setCustomId("updateTag.modal")
 			.setTitle(t.modal.title)
-			.setComponents([row1, row2]);
+			.setComponents([row, row2]);
 
 		ctx.interaction.modal(modal);
 	}

@@ -3,7 +3,7 @@ import { ModalCommand, type ModalContext } from "seyfert";
 
 export default class CreateTag extends ModalCommand {
 	filter(interaction: ModalContext) {
-		return interaction.customId === "@Modal_createTag";
+		return interaction.customId === "createTag.modal";
 	}
 
 	async run({ interaction, guildId, author: { id: ownerId } }: ModalContext) {
