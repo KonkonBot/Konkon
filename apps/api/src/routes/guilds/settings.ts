@@ -6,19 +6,19 @@ export const settingsRoute = new Elysia().post(
 	async ({ body, params: { id } }) => {
 		const guild = await db.query.guilds
 			.findFirst({
-				where: (table, { eq }) => eq(table.guild_id, id),
+				where: (t, { eq }) => eq(t.guildId, id),
 			})
 			.execute();
 
 		if (!guild)
 			await db.insert(schemas.guilds).values({
-				guild_id: id,
+				guildId: id,
 			});
 
 		const [updatedGuild] = await db
 			.update(schemas.guilds)
 			.set({ ...body })
-			.where(_.eq(schemas.guilds.guild_id, id))
+			.where(_.eq(schemas.guilds.guildId, id))
 			.returning()
 			.execute();
 

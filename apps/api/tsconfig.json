@@ -1,5 +1,5 @@
 {
-  "extends": "@konkon/config/base.json",
+  // "extends": "@konkon/config/base.json",
   "compilerOptions": {
     "strict": true,
   },

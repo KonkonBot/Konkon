@@ -1,4 +1,5 @@
 import "dotenv/config";
+import { env } from "@konkon/config/env";
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
@@ -6,6 +7,6 @@ export default defineConfig({
 	schema: "./src/schema.ts",
 	out: "./src/migrations",
 	dbCredentials: {
-		url: process.env.DATABASE_URL as string,
+		url: env.DATABASE_URL as string,
 	},
 });

@@ -25,7 +25,7 @@
     "elysia": "^1.0.20",
     "elysia-decorators": "^1.0.0",
     "mdbox": "^0.1.0",
-    "microsoft-translate-api": "git@github.com:Chewawi/microsoft-translate-api.git"
+    "microsoft-translate-api": "^1.1.0"
   },
   "trustedDependencies": [
     "@biomejs/biome",
