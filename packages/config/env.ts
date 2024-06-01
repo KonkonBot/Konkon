@@ -10,7 +10,6 @@ export const env: { [key: string]: string } = {
 };
 
 for (const key in env) {
-	console.log(key, env[key]);
 	if (!env[key]) {
 		throw new Error(`Missing env variable: ${key}`);
 	}

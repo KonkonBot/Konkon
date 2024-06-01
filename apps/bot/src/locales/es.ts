@@ -7,7 +7,7 @@ export default {
 		tags: {
 			get: {
 				name: "get",
-				description: "Obtiene un tag. :D",
+				description: "Obten un tag.",
 				errors: (ctx: CommandContext) => {
 					return {
 						notFound: (tag: string) => {
@@ -19,7 +19,7 @@ export default {
 				},
 			},
 			add: {
-				description: "Crea un nuevo tag. :D",
+				description: "Crea un nuevo tag.",
 				modal: {
 					title: "Creación de tag",
 					name: {
@@ -35,7 +35,7 @@ export default {
 				},
 			},
 			edit: {
-				description: "Edita un tag existente. :D",
+				description: "Edita un tag existente.",
 				modal: {
 					title: "Actualización de tag",
 					name: {

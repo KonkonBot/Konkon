@@ -1,10 +1,12 @@
-import { getTag, getTags, updateTag } from "@konkon/db";
+import { getTag, type schemas, searchTags, updateTag } from "@konkon/db";
+import type { InferSelectModel } from "drizzle-orm";
 import {
 	ActionRow,
 	type CommandContext,
 	Declare,
 	LocalesT,
 	Modal,
+	type OKFunction,
 	Options,
 	SubCommand,
 	TextInput,
@@ -13,15 +15,16 @@ import {
 import { TextInputStyle } from "seyfert/lib/types";
 
 const options = {
-	name: createStringOption({
-		description: "The name of the tag.",
+	tag: createStringOption({
+		description: "The tag to edit.",
 		autocomplete: async (interaction) => {
-			const _select = await getTags();
-			const select = _select.map((tag) => tag.name);
-			const focus = interaction.getInput();
-			return interaction.respond(
-				select.filter((ch) => ch.includes(focus)).map((ch) => ({ name: ch, value: ch })),
-			);
+			const select = await searchTags(interaction.getInput(), { name: true });
+			return interaction.respond(select.map((tag) => ({ name: tag.name, value: tag.name })));
+		},
+		value: async (data, ok: OKFunction<InferSelectModel<schemas.Tags>>, fail) => {
+			const tag = await getTag(data.value, data.context.guildId, data.context.author.id);
+			if (tag) ok(tag);
+			return fail("notFound");
 		},
 		required: true,
 	}),
@@ -40,30 +43,34 @@ const options = {
 @Options(options)
 @LocalesT(void 0, "commands.tags.edit.description")
 export default class TagsEdit extends SubCommand {
+	async onRunError(ctx: CommandContext<typeof options>, error: string) {
+		if (error === "notFound") {
+			return ctx.write({
+				content: ctx.t.commands.tags.edit
+					.get(await ctx.locale())
+					.errorMessage(ctx.options.tag.name),
+				components: [],
+			});
+		}
+	}
 	async run(ctx: CommandContext<typeof options>) {
 		const t = ctx.t.commands.tags.edit.get(await ctx.locale());
 
 		const {
-			options: { name, content },
+			options: { tag, content },
 		} = ctx;
-
-		const tag = await getTag(name, ctx.guildId, ctx.author.id);
-
-		if (!tag) {
-			return ctx.write({ content: t.errorMessage(name), components: [] });
-		}
 
 		if (content) {
 			await updateTag(tag.id, {
 				content,
 			});
 
-			return ctx.write({ content: t.successMessage(name), components: [] });
+			return ctx.write({ content: t.successMessage(tag.name), components: [] });
 		}
 
 		const nameInput = new TextInput()
 			.setCustomId("name")
-			.setValue(name)
+			.setValue(tag.name)
 			.setStyle(TextInputStyle.Short)
 			.setLabel(t.modal.name.label);
 

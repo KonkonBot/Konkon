@@ -1,7 +1,7 @@
-import { eq, sql } from "drizzle-orm";
+import { type InferSelectModel, eq, sql } from "drizzle-orm";
 import type { PgInsertValue, PgUpdateSetSource } from "drizzle-orm/pg-core";
 import { db, schemas } from "..";
-import { lower } from "../utils";
+import { type ReturnTypeFromSelect, type SelectColumns, lower } from "../utils";
 
 /**
  * Create a tag.
@@ -105,4 +105,20 @@ export async function updateUses(id: number) {
 		.update(schemas.tags)
 		.set({ uses: sql`${sql.raw("uses")} + 1` })
 		.where(eq(schemas.tags.id, id));
+}
+
+type a = InferSelectModel<schemas.Tags>;
+/**
+ * Search tags.
+ * @param query The query to search for.
+ * @returns The tags.
+ */
+export async function searchTags<
+	T extends InferSelectModel<schemas.Tags>,
+	S extends SelectColumns<T>,
+>(query: string, select?: S): Promise<ReturnTypeFromSelect<T, S>[]> {
+	return (await db.query.tags.findMany({
+		columns: select,
+		where: (t, { ilike }) => ilike(t.name, `%${query}%`),
+	})) as [];
 }
