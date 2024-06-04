@@ -24,7 +24,6 @@ export default class UpdateTag extends ModalCommand {
 			content,
 		});
 
-		console.log(updatedTag);
 		interaction.write({
 			content: `Tag updated: \`${updatedTag.name}\``,
 			flags: MessageFlags.Ephemeral,

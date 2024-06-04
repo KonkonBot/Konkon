@@ -45,6 +45,6 @@ export default class TagGetCommand extends SubCommand {
 		}
 
 		await updateUses(tagResult.id);
-		await parseMessage(ctx, tag);
+		await parseMessage(ctx, tagResult.content);
 	}
 }
