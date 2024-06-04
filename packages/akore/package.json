@@ -5,9 +5,8 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "type": "module",
   "dependencies": {
-    "akore": "Pavez7274/akore#dev",
+    "akore": "^1.8.2",
     "seyfert": "^1.4.0"
   }
 }
