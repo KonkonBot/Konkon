@@ -9,3 +9,4 @@ The `src/lib` folder is structured as follows:
   - `structures/managers`: This folder contains all the app's managers, such as the `PrefixManager`.
   
 - `utils`: This folder contains all the app's utility functions.
+  - `utils/akore`: :3

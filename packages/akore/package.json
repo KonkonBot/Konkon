@@ -1,11 +1,13 @@
 {
   "name": "@konkon/akore",
-  "module": "src/index.ts",
+  "version": "0.0.1",
+  "main": "src/index.ts",
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "type": "module",
   "dependencies": {
-    "akore": "^1.8.1"
+    "akore": "Pavez7274/akore#dev",
+    "seyfert": "^1.4.0"
   }
 }

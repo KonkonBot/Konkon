@@ -21,4 +21,5 @@ The best Discord bot ever :3
 
 * [Akashi](https://github.com/akashibot/akashi/) for the "services" idea. :3
 * [HirakuShinzou](https://github.com/OpenWaifu-Project/HirakuShinzou/) for the the project structure. >:3
+* [Akore](https://github.com/Pavez7274/akore) because it's awesome. :D
 * [Seyfert](https://github.com/Seyfert) for the framework. :heart:

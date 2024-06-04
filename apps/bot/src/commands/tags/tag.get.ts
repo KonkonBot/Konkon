@@ -2,12 +2,12 @@ import { getTag, updateUses } from "@konkon/db";
 import {
 	type CommandContext,
 	Declare,
-	Embed,
 	LocalesT,
 	Options,
 	SubCommand,
 	createStringOption,
 } from "seyfert";
+import { parseMessage } from "#lib/utils/akore";
 
 const options = {
 	tag: createStringOption({
@@ -24,7 +24,7 @@ const options = {
 
 @Declare({
 	name: "get",
-	description: "Get a tag :D",
+	description: "Get a tag.",
 	contexts: ["BOT_DM", "GUILD", "PRIVATE_CHANNEL"],
 	integrationTypes: ["GUILD_INSTALL", "USER_INSTALL"],
 })
@@ -45,15 +45,6 @@ export default class TagGetCommand extends SubCommand {
 		}
 
 		await updateUses(tagResult.id);
-
-		const { name, content } = tagResult;
-
-		const embed = new Embed()
-			.setAuthor({
-				name: name,
-			})
-			.setDescription(content);
-
-		return ctx.editOrReply({ embeds: [embed] });
+		await parseMessage(ctx, tag);
 	}
 }

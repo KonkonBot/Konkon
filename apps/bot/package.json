@@ -2,7 +2,7 @@
   "name": "bot",
   "version": "1.0.0",
   "scripts": {
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run src/index.ts"
   },
   "keywords": [],
   "author": "@chewawi",
@@ -15,6 +15,7 @@
     "drizzle-orm": "^0.30.10",
     "elysia": "^1.0.22",
     "lodash": "^4.17.21",
+    "mdbox": "^0.1.0",
     "pg": "^8.11.5",
     "pg-listen": "^1.7.0",
     "seyfert": "github:tiramisulabs/seyfert",

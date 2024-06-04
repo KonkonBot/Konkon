@@ -9,6 +9,11 @@
 			"node",
 			"bun-types"
 		],
+		"paths": {
+			"#lib/*": [
+				"./src/lib/*"
+			]
+		}
 	},
 	"include": [
 		"src/**/*"
