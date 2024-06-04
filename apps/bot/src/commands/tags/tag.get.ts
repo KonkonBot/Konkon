@@ -25,8 +25,6 @@ const options = {
 @Declare({
 	name: "get",
 	description: "Get a tag.",
-	contexts: ["BOT_DM", "GUILD", "PRIVATE_CHANNEL"],
-	integrationTypes: ["GUILD_INSTALL", "USER_INSTALL"],
 })
 @Options(options)
 @LocalesT(void 0, "commands.tags.get.description")

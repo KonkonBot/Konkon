@@ -4,11 +4,11 @@ import {
 	type CommandContext,
 	Declare,
 	Embed,
-	Middlewares,
 	Options,
 	SubCommand,
 	createStringOption,
 } from "seyfert";
+import { kscriptFunctions } from "#lib/utils/akore";
 
 const options = {
 	code: createStringOption({
@@ -24,7 +24,6 @@ type OptionsType = typeof options;
 	description: "Transpiles provided Konscript code to JavaScript",
 })
 @Options(options)
-@Middlewares(["developerOnly"])
 export default class Akore extends SubCommand {
 	async run(ctx: CommandContext<OptionsType, never>) {
 		const { author } = ctx;
@@ -59,7 +58,23 @@ export default class Akore extends SubCommand {
 			},
 		]);
 
-		// await parseMessage(ctx, code);
-		await ctx.write({ embeds: [embed] });
+		const options = {
+			embeds: [embed],
+		};
+
+		const params = {
+			options,
+			ctx,
+			...kscriptFunctions,
+		};
+
+		const asyncFunc = new Function(
+			...Object.keys(params),
+			`return (async () => { ${transformedCode} })();`,
+		);
+
+		await asyncFunc(...Object.values(params));
+
+		await ctx.write(options);
 	}
 }

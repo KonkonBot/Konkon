@@ -2,9 +2,9 @@ import { AutoLoad, Command, Declare } from "seyfert";
 
 @Declare({
 	name: "user",
-	description: "account command",
-	contexts: ["BOT_DM", "GUILD", "PRIVATE_CHANNEL"],
-	integrationTypes: ["GUILD_INSTALL", "USER_INSTALL"],
+	description: "User commands",
+	contexts: ["BotDM", "Guild", "PrivateChannel"],
+	integrationTypes: ["GuildInstall", "UserInstall"],
 })
 @AutoLoad()
-export default class UserCommand extends Command {}
+export default class UserParent extends Command {}

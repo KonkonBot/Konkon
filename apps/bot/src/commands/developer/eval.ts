@@ -4,7 +4,6 @@ import {
 	type CommandContext,
 	Declare,
 	Embed,
-	Middlewares,
 	Options,
 	SubCommand,
 	createBooleanOption,
@@ -38,7 +37,6 @@ type OptionsType = typeof options;
 	description: "Evaluates provided JavaScript code",
 })
 @Options(options)
-@Middlewares(["developerOnly"])
 export default class EvalCommand extends SubCommand {
 	async run(ctx: CommandContext<OptionsType, never>) {
 		const { author } = ctx;

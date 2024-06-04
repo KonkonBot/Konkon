@@ -5,9 +5,9 @@ const tags = schemas.tags;
 
 @Declare({
 	name: "tag",
-	description: "tag command :3",
-	contexts: ["BOT_DM", "GUILD", "PRIVATE_CHANNEL"],
-	integrationTypes: ["GUILD_INSTALL", "USER_INSTALL"],
+	description: "Tag commands",
+	contexts: ["BotDM", "Guild", "PrivateChannel"],
+	integrationTypes: ["GuildInstall", "UserInstall"],
 })
 @AutoLoad()
 export default class TagCommand extends Command {}

@@ -21,8 +21,6 @@ const options = {
 @Declare({
 	name: "list",
 	description: "List all tags in the server or user.",
-	contexts: ["GUILD", "PRIVATE_CHANNEL"],
-	integrationTypes: ["GUILD_INSTALL"],
 })
 @Options(options)
 @LocalesT(void 0, "commands.tags.list.description")

@@ -37,8 +37,6 @@ const options = {
 	name: "edit",
 	aliases: ["update"],
 	description: "Edit an existing tag.",
-	contexts: ["GUILD", "PRIVATE_CHANNEL"],
-	integrationTypes: ["GUILD_INSTALL"],
 })
 @Options(options)
 @LocalesT(void 0, "commands.tags.edit.description")

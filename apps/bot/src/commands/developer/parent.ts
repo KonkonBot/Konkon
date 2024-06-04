@@ -1,10 +1,11 @@
-import { AutoLoad, Command, Declare } from "seyfert";
+import { AutoLoad, Command, Declare, Middlewares } from "seyfert";
 
 @Declare({
 	name: "dev",
-	description: "dev commands",
-	contexts: ["BOT_DM", "GUILD", "PRIVATE_CHANNEL"],
-	integrationTypes: ["GUILD_INSTALL", "USER_INSTALL"],
+	description: "Developer commands (for devs only :3)",
+	contexts: ["BotDM", "Guild", "PrivateChannel"],
+	integrationTypes: ["GuildInstall", "UserInstall"],
 })
 @AutoLoad()
+@Middlewares(["developerOnly"])
 export default class DeveloperParent extends Command {}

@@ -25,8 +25,6 @@ const options = {
 	name: "add",
 	aliases: ["create"],
 	description: "Create a new tag.",
-	contexts: ["GUILD", "PRIVATE_CHANNEL"],
-	integrationTypes: ["GUILD_INSTALL"],
 })
 @Options(options)
 @LocalesT(void 0, "commands.tags.add.description")

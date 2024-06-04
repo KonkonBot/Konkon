@@ -9,9 +9,7 @@ const options = {
 @Declare({
 	name: "info",
 	aliases: ["whois"],
-	description: "...",
-	contexts: ["BOT_DM", "GUILD", "PRIVATE_CHANNEL"],
-	integrationTypes: ["GUILD_INSTALL", "USER_INSTALL"],
+	description: "..."
 })
 @Options(options)
 export default class UserInfo extends SubCommand {

@@ -3,7 +3,7 @@ import type { CommandContext } from "seyfert";
 import type { InteractionCreateBodyRequest } from "seyfert/lib/common";
 import { avatarURL } from ".";
 
-const functions = { avatarURL };
+export const kscriptFunctions = { avatarURL };
 
 const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
 
@@ -45,7 +45,7 @@ export const parseMessage = async (ctx: CommandContext, content: string) => {
 	const params = {
 		options,
 		ctx,
-		...functions,
+		...kscriptFunctions,
 	};
 
 	const asyncFunc = new Function(...Object.keys(params), `return (async () => { ${result} })();`);
