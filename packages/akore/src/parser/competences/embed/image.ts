@@ -7,6 +7,7 @@ export class EmbedImageCompetence extends Competence<KonscriptTranspiler> {
 
 	public resolve({ inside, match }: Token<true>) {
 		const value = inside;
+		console.log(typeof value, value);
 		return new EscapeNode(
 			`${match[0].replace("@", "")}: { url: ${this.transpiler.string(value).toCode()} }`,
 		);

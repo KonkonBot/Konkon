@@ -1,5 +1,11 @@
 import { KonscriptTranspiler } from "@konkon/akore";
 import type { CommandContext } from "seyfert";
+import type { InteractionCreateBodyRequest } from "seyfert/lib/common";
+import { avatarURL } from ".";
+
+const functions = { avatarURL };
+
+const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
 
 /**
  * Extracts kscript code from a message.
@@ -23,17 +29,30 @@ export function extractKonscript(input: string) {
 export const parseMessage = async (ctx: CommandContext, content: string) => {
 	const kscript = extractKonscript(content);
 
-	if (!kscript) return await ctx.editOrReply({ content });
+	if (!kscript) {
+		await ctx.editOrReply({ content });
+		return;
+	}
 
 	const t = new KonscriptTranspiler();
 	const result = t.toCode(kscript.code);
 
-	const options = {
-		...(kscript.content ? { content: kscript.content } : null),
+	const options: InteractionCreateBodyRequest = {
+		...(kscript.content && { content: kscript.content }),
 		embeds: [],
 	};
 
-	new Function(result).bind(options)();
+	const params = {
+		options,
+		ctx,
+		...functions,
+	};
+
+	const asyncFunc = new Function(...Object.keys(params), `return (async () => { ${result} })();`);
+
+	console.log(result, options.embeds);
+
+	await asyncFunc(...Object.values(params));
 
 	return await ctx.editOrReply(options);
 };

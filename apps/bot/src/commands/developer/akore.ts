@@ -38,6 +38,7 @@ export default class Akore extends SubCommand {
 
 		let time = Date.now();
 		const transpiler = new KonscriptTranspiler();
+
 		const transformedCode = transpiler.toCode(code);
 
 		time = Date.now() - time;
@@ -58,6 +59,7 @@ export default class Akore extends SubCommand {
 			},
 		]);
 
+		// await parseMessage(ctx, code);
 		await ctx.write({ embeds: [embed] });
 	}
 }

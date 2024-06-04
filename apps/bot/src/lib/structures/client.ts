@@ -40,6 +40,9 @@ export class KonkonClient extends Client {
 	}
 
 	async start() {
+		await this.loadEvents();
+		await this.events?.runCustom("testEvent");
+
 		super.start().then(() => {
 			this.uploadCommands();
 			this.prefixes.start();
@@ -53,4 +56,9 @@ declare module "seyfert" {
 	interface ExtendContext extends ReturnType<typeof KonkonContext> {}
 	interface RegisteredMiddlewares extends ParseMiddlewares<typeof middlewares> {}
 	interface DefaultLocale extends ParseLocales<typeof defaultLang> {}
+
+	// owo
+	interface CustomEvents {
+		testEvent: () => unknown;
+	}
 }

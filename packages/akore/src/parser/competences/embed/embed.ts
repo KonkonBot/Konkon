@@ -9,7 +9,9 @@ class EmbedChildCompetence extends Competence<KonscriptTranspiler> {
 
 	public resolve({ inside, match }: Token<true>) {
 		const value = inside;
-		return new EscapeNode(`${match[match.length - 1]}: ${this.transpiler.string(value).toCode()}`);
+		return new EscapeNode(
+			`${match[0].replace("@", "")}: ${this.transpiler.string(value).toCode()}`,
+		);
 	}
 }
 
@@ -22,6 +24,6 @@ export class EmbedCompetence extends Competence<KonscriptTranspiler> {
 		t.declare(new EmbedChildCompetence(t));
 		t.declare(new EmbedImageCompetence(t));
 
-		return new EscapeNode(`(this.embeds ??= []).push({ ${t.sequence(inside).toCode()} })`);
+		return new EscapeNode(`(options.embeds ??= []).push({ ${t.sequence(inside).toCode()} })`);
 	}
 }
