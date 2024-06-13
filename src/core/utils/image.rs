@@ -1,5 +1,5 @@
 use image::{DynamicImage, GenericImageView, Rgba};
-// use rayon::prelude::*;
+use rayon::prelude::*;
 
 pub async fn get_avatar_color(
     image_url: impl Into<String>,

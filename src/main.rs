@@ -4,7 +4,7 @@ pub use core::utils;
 
 mod commands;
 
-struct Data {} // User data, which is stored and accessible in all command invocations
+struct Data {}
 type Error = Box<dyn std::error::Error + Send + Sync>;
 type Context<'a> = poise::Context<'a, Data, Error>;
 
