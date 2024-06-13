@@ -76,4 +76,9 @@ export default {
 			},
 		},
 	},
+	messages: {
+		notDeveloper: {
+			message: "No eres desarrollador.",
+		},
+	},
 } satisfies typeof defaultLang;

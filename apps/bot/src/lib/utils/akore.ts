@@ -1,58 +1,70 @@
-import { KonscriptTranspiler } from "@konkon/akore";
-import type { CommandContext } from "seyfert";
-import type { InteractionCreateBodyRequest } from "seyfert/lib/common";
-import { avatarURL } from ".";
+// ! AKORE BUG
 
-export const kscriptFunctions = { avatarURL };
+// import { KonscriptTranspiler } from "@konkon/akore";
+// import type { CommandContext } from "seyfert";
+// import { avatarURL } from ".";
 
-const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
+// export const kscriptFunctions = { avatarURL };
 
-/**
- * Extracts kscript code from a message.
- * @param input The message content.
- */
-export function extractKonscript(input: string) {
-	const regex = /\{kscript:\s*([\s\S]*?)\}/;
+// const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
 
-	const match = input.match(regex);
-	if (match) {
-		return { content: input.replace(regex, ""), code: match[1] };
-	}
-	return null;
-}
+// /**
+//  * Extracts kscript code from a message.
+//  * @param input The message content.
+//  */
+// export function extractKonscript(input: string) {
+// 	const regex = /\{kscript:\s*([\s\S]*?)\}/;
 
-/**
- * Parses kscript code to a message.
- * @param ctx The command context.
- * @param content The message content.
- */
-export const parseMessage = async (ctx: CommandContext, content: string) => {
-	const kscript = extractKonscript(content);
+// 	const match = input.match(regex);
+// 	if (match) {
+// 		return { content: input.replace(regex, ""), code: match[1] };
+// 	}
+// 	return null;
+// }
 
-	if (!kscript) {
-		await ctx.editOrReply({ content });
-		return;
-	}
+// /**
+//  * Executes kscript code in a message.
+//  * @param ctx The command context.
+//  * @param code The kscript code.
+//  * @param content The message content.
+//  */
+// export const executeKonscript = async (ctx: CommandContext, code: string, content?: string) => {
+// 	const t = new KonscriptTranspiler();
+// 	const result = t.toCode(code);
 
-	const t = new KonscriptTranspiler();
-	const result = t.toCode(kscript.code);
+// 	console.log(result);
 
-	const options: InteractionCreateBodyRequest = {
-		...(kscript.content && { content: kscript.content }),
-		embeds: [],
-	};
+// 	const options = {
+// 		...(content && { content: content }),
+// 		embeds: [],
+// 	};
 
-	const params = {
-		options,
-		ctx,
-		...kscriptFunctions,
-	};
+// 	const params = {
+// 		options,
+// 		ctx,
+// 		...kscriptFunctions,
+// 	};
 
-	const asyncFunc = new Function(...Object.keys(params), `return (async () => { ${result} })();`);
+// 	const asyncFunc = new Function(...Object.keys(params), `return (async () => { ${result} })();`);
 
-	console.log(result, options.embeds);
+// 	await asyncFunc(...Object.values(params));
 
-	await asyncFunc(...Object.values(params));
+// 	await ctx.editOrReply(options);
+// 	return result;
+// };
 
-	return await ctx.editOrReply(options);
-};
+// /**
+//  * Parses kscript code to a message.
+//  * @param ctx The command context.
+//  * @param content The message content.
+//  */
+// export const parseMessage = async (ctx: CommandContext, content: string) => {
+// 	const kscript = extractKonscript(content);
+
+// 	if (!kscript) {
+// 		await ctx.editOrReply({ content });
+// 		return;
+// 	}
+
+// 	executeKonscript(ctx, kscript.code, kscript.content);
+// };

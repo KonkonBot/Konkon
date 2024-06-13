@@ -7,7 +7,8 @@ import {
 	SubCommand,
 	createStringOption,
 } from "seyfert";
-import { parseMessage } from "#lib/utils/akore";
+// ! AKORE BUG
+// import { parseMessage } from "#lib/utils/akore";
 
 const options = {
 	tag: createStringOption({
@@ -43,6 +44,9 @@ export default class TagGetCommand extends SubCommand {
 		}
 
 		await updateUses(tagResult.id);
-		await parseMessage(ctx, tagResult.content);
+		// ! AKORE BUG
+		// await parseMessage(ctx, tagResult.content);
+
+		await ctx.write({ content: tagResult.content });
 	}
 }

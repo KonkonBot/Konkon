@@ -1,10 +1,10 @@
 import { env } from "@konkon/config/env";
-import { Client } from "@neondatabase/serverless";
+import { Pool } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-serverless";
 import * as schema from "./schema";
 
-const client = new Client({
-	connectionString: env.DATABASE_URL,
+const client = new Pool({
+	connectionString: env.DATABASE_URI,
 });
 
 const db = drizzle(client, { schema });

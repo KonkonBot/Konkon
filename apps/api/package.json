@@ -1,11 +1,17 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "main": "src/index.ts",
-  "type": "module",
+  "main": "src/",
+  "files": ["dist"],
+  "scripts": {
+    "start": "node dist/index.cjs",
+    "dev": "bun run --watch src/index.ts",
+    "build": "tsup"
+  },
   "dependencies": {
     "@konkon/db": "workspace:*",
-    "elysia": "^1.0.22",
+    "@napi-rs/canvas": "^0.1.53",
+    "elysia": "^1.0.23",
     "elysia-autoload": "^0.2.3",
     "microsoft-translate-api": "^1.1.0"
   }

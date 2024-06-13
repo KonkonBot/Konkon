@@ -1,26 +1,22 @@
 {
   "name": "konkon",
   "private": true,
-  "scripts": {
-    "bot": "bun run --filter bot",
-    "api": "bun run --filter api",
-    "db": "bun --filter @konkon/db"
-  },
   "workspaces": [
     "packages/*",
     "apps/*"
   ],
   "devDependencies": {
     "@biomejs/biome": "^1.7.3",
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "unbuild": "^2.0.0"
   },
   "module": "index.ts",
   "type": "module",
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "trustedDependencies": [
-    "@biomejs/biome",
-    "akore"
-  ]
+  "packageManager": "bun@1.1.11",
+  "dependencies": {
+    "@bogeychan/elysia-polyfills": "^0.6.4"
+  }
 }

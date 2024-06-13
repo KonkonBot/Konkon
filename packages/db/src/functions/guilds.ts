@@ -1,4 +1,4 @@
-import { _, db, schemas } from "@konkon/db";
+import { _, db, schemas } from "..";
 
 export async function getGuildOrCreate(id: string) {
 	const guild = await db.query.guilds
@@ -23,15 +23,20 @@ export async function createGuild(guildId: string) {
 	return guild;
 }
 
-export async function addPrefixes(guildId: string, newPrefixes: string[]) {
+export async function getPrefixes(guildId: string) {
 	const guild = await getGuildOrCreate(guildId);
+	return guild.prefixes;
+}
 
-	guild.prefixes.push(...newPrefixes);
+export async function addPrefixes(guildId: string, newPrefixes: string[]) {
+	const prefixes = await getPrefixes(guildId);
+
+	prefixes.push(...newPrefixes);
 
 	const [updatedGuild] = await db
 		.update(schemas.guilds)
 		.set({
-			prefixes: guild.prefixes,
+			prefixes: prefixes,
 		})
 		.where(_.eq(schemas.guilds.guildId, guildId))
 		.returning();

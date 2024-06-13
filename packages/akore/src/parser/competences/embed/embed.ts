@@ -24,6 +24,13 @@ export class EmbedCompetence extends Competence<KonscriptTranspiler> {
 		t.declare(new EmbedChildCompetence(t));
 		t.declare(new EmbedImageCompetence(t));
 
-		return new EscapeNode(`(options.embeds ??= []).push({ ${t.sequence(inside).toCode()} })`);
+		for (const token of this.transpiler.lexer.tokenize(inside)) {
+			inside = inside.replace(token.total, "");
+		}
+		inside = inside.trim();
+
+		const res = t.sequence(inside).toCode();
+
+		return new EscapeNode(`${res ? `(options.embeds ??= []).push({ ${res} })` : null}`);
 	}
 }

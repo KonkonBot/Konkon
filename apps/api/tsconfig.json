@@ -6,7 +6,11 @@
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
     "rootDir": "./src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "types": ["node", "bun-types"],
+    "paths": {
+      "#/*": ["./src/*"]
+    }
   },
   "include": ["src"]
 }

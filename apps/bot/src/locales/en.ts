@@ -73,4 +73,9 @@ export default {
 			},
 		},
 	},
+	messages: {
+		notDeveloper: {
+			message: "You are not a developer.",
+		},
+	},
 };

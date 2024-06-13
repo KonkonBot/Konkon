@@ -1,2 +1,2 @@
 export * from "./embed/embed";
-export * from "./context/avatarURL";
+export * from "./context";
