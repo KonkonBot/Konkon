@@ -1,3 +1,0 @@
-# @konkon/akore
-
-WIP.
