@@ -1,16 +1,31 @@
 import dotenv from "dotenv";
+import { z } from "zod";
+import path from 'node:path';
 
 dotenv.config({
-	path: `${__dirname}/.env`,
+	path: path.join(__dirname, "../../.env"),
 });
 
-export const env: { [key: string]: string } = {
-	BOT_TOKEN: process.env.BOT_TOKEN as string,
-	DATABASE_URL: process.env.DATABASE_URL as string,
-};
+const envSchema = z.object({
+	/**
+	 * The discord app token
+	 */
+	DISCORD_APP_TOKEN: z.string(),
+	/**
+	 * The database URI
+	 */
+	DATABASE_URI: z.string(),
+});
+
+type Env = z.infer<typeof envSchema>;
+
+/**
+ * The environment variables
+ */
+export const env: Env = envSchema.parse(process.env);
 
 for (const key in env) {
-	if (!env[key]) {
+	if (!(key in env)) {
 		throw new Error(`Missing env variable: ${key}`);
 	}
 }
