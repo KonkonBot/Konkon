@@ -1,4 +1,4 @@
 import Elysia from "elysia";
-import { settingsRoute } from "./settings";
+import { settingsRoute } from "./prefixes";
 
-export const guildsRoutes = new Elysia({ prefix: "/guilds/:id" }).use(settingsRoute);
+export const guildsController = new Elysia({ prefix: "/guilds" }).use(settingsRoute);

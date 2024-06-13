@@ -1,9 +1,5 @@
 import { Elysia } from "elysia";
-import { guildsRoutes } from "./routes/guilds";
-import { porterRoutes } from "./routes/porter";
+import { guildsController } from "./routes/guilds";
+import { porterController } from "./routes/porter";
 
-// export const konkonRoutes = (app: Elysia) => app.use(guildsRoutes).use(porterRoutes);
-
-export const apiApp = () => new Elysia().use(guildsRoutes).use(porterRoutes).listen(3080);
-
-export default apiApp;
+export const apiApp = new Elysia().use(guildsController).use(porterController).listen(3080);
