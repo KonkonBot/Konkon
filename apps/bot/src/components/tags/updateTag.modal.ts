@@ -1,4 +1,4 @@
-import { getTag, updateTag } from "@konkon/db";
+import { getTag, updateTag } from "@seifato/db";
 import { ModalCommand, type ModalContext } from "seyfert";
 import { MessageFlags } from "seyfert/lib/types";
 

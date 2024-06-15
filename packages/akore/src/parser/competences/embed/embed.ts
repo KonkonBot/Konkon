@@ -4,7 +4,7 @@ import { KonscriptTranspiler } from "../../transpiler";
 import { EmbedImageCompetence } from "./image";
 
 class EmbedChildCompetence extends Competence<KonscriptTranspiler> {
-	override readonly identifier = "konkon:embed:child";
+	override readonly identifier = "seifato:embed:child";
 	override readonly pattern = /@(title|description)/;
 
 	public resolve({ inside, match }: Token<true>) {
@@ -16,7 +16,7 @@ class EmbedChildCompetence extends Competence<KonscriptTranspiler> {
 }
 
 export class EmbedCompetence extends Competence<KonscriptTranspiler> {
-	override readonly identifier = "konkon:embed";
+	override readonly identifier = "seifato:embed";
 	override readonly pattern = /\@embed/;
 
 	public resolve({ inside }: Token<true>) {

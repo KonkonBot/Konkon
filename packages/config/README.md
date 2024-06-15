@@ -1,10 +1,10 @@
-# `@konkon/config`
+# `@seifato/config`
 
-A configuration manager for the `KonkonBot` servicies.
+A configuration manager for the `SeifatoBot` servicies.
 
 ## Structure
 
-`@konkon/config` is structured as follows:
+`@seifato/config` is structured as follows:
 
 - `.env`: This file contains the app's environment variables.
 - `env.ts`: This file exports the app's environment variables.
@@ -13,7 +13,7 @@ A configuration manager for the `KonkonBot` servicies.
 ## Usage
 
 ```ts
-import { env } from '@konkon/config/env';
+import { env } from '@seifato/config/env';
 
 console.log(env.BOT_TOKEN);
 ```

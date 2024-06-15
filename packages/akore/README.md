@@ -1,3 +1,3 @@
-# @konkon/akore
+# @seifato/akore
 
 WIP.

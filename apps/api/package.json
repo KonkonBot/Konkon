@@ -9,7 +9,7 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@konkon/db": "workspace:*",
+    "@seifato/db": "workspace:*",
     "@napi-rs/canvas": "^0.1.53",
     "elysia": "^1.0.23",
     "elysia-autoload": "^0.2.3",

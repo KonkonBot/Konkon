@@ -1,4 +1,4 @@
-import { createTag } from "@konkon/db";
+import { createTag } from "@seifato/db";
 import { ModalCommand, type ModalContext } from "seyfert";
 
 export default class CreateTag extends ModalCommand {

@@ -1,5 +1,5 @@
 {
-  "name": "@konkon/akore",
+  "name": "@seifato/akore",
   "version": "0.0.1",
   "main": "src/index.ts",
   "peerDependencies": {

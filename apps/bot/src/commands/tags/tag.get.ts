@@ -1,4 +1,4 @@
-import { getTag, updateUses } from "@konkon/db";
+import { getTag, updateUses } from "@seifato/db";
 import {
 	type CommandContext,
 	Declare,

@@ -1,5 +1,5 @@
 {
-	// "extends": "@konkon/config/base.json",
+	// "extends": "@seifato/config/base.json",
 	"compilerOptions": {
 		"esModuleInterop": true,
 		"module": "es2022",

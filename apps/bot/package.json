@@ -9,8 +9,8 @@
   "license": "ISC",
   "dependencies": {
     "@elysiajs/eden": "^1.0.14",
-    "@konkon/config": "workspace:*",
-    "@konkon/db": "workspace:*",
+    "@seifato/config": "workspace:*",
+    "@seifato/db": "workspace:*",
     "@types/lodash": "^4.17.4",
     "drizzle-orm": "^0.30.10",
     "elysia": "^1.0.22",

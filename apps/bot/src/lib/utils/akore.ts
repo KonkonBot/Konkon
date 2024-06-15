@@ -1,6 +1,6 @@
 // ! AKORE BUG
 
-// import { KonscriptTranspiler } from "@konkon/akore";
+// import { KonscriptTranspiler } from "@seifato/akore";
 // import type { CommandContext } from "seyfert";
 // import { avatarURL } from ".";
 

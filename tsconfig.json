@@ -1,8 +1,8 @@
 {
-	"extends": "@konkon/config/base.json",
+	"extends": "@seifato/config/base.json",
 	"compilerOptions": {
 		"paths": {
-			"@konkon/*": [
+			"@seifato/*": [
 				"./*", "./packages/*"
 			]
 		}

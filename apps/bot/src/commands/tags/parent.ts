@@ -1,4 +1,4 @@
-import { schemas } from "@konkon/db";
+import { schemas } from "@seifato/db";
 import { AutoLoad, Command, Declare } from "seyfert";
 
 const tags = schemas.tags;

@@ -2,7 +2,7 @@ import { Competence, EscapeNode, type Token, splitInside } from "akore";
 import type { KonscriptTranspiler } from "../../../transpiler";
 
 export class UserAvatarCompetence extends Competence<KonscriptTranspiler> {
-	override readonly identifier = "konkon:userAvatar";
+	override readonly identifier = "seifato:userAvatar";
 	override readonly pattern = /@(userAvatar)/;
 
 	public resolve({ inside }: Token<boolean>) {

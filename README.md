@@ -1,4 +1,4 @@
-# Konkon <img style="float: right" align="right" width=150 src="https://media.discordapp.net/stickers/1139982391818063872.png" alt="kita" />
+# Seifato <img style="float: right" align="right" width=150 src="https://media.discordapp.net/stickers/1139982391818063872.png" alt="kita" />
 
 The best Discord bot ever :3
 
@@ -12,7 +12,7 @@ The best Discord bot ever :3
 
 ## Author
 
-**Konkon** © [Chewawi](https://github.com/Chewawi)
+**Seifato** © [Chewawi](https://github.com/Chewawi)
 
 * GitHub [@chewawi](https://github.com/Chewawi)
 * Twitter [@che_wawi](https://x.com/che_wawi)

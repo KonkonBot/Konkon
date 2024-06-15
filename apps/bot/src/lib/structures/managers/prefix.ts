@@ -1,4 +1,4 @@
-import { db, dbClient, schemas } from "@konkon/db";
+import { db, dbClient, schemas } from "@seifato/db";
 import { type Client, Collection } from "seyfert";
 
 class PrefixManager {

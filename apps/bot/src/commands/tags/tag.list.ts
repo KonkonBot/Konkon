@@ -1,4 +1,4 @@
-import { getTagsWhere } from "@konkon/db";
+import { getTagsWhere } from "@seifato/db";
 import {
 	type CommandContext,
 	Declare,

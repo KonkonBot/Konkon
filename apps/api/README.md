@@ -1,6 +1,6 @@
-# Konkon API
+# Seifato API
 
-This is the API for the Konkon bot.
+This is the API for the Seifato bot.
 
 ## Routes
 
@@ -18,15 +18,15 @@ This is the API for the Konkon bot.
 ## Usage
 
 ```ts
-import { KonkonClient } from './client';
-import { konkonRoutes } from 'api';
+import { SeifatoClient } from './client';
+import { seifatoRoutes } from 'api';
 import { Elysia } from 'elysia';
 
-export const konkonAPI = new Elysia()
-  .use(konkonRoutes)
+export const seifatoAPI = new Elysia()
+  .use(seifatoRoutes)
   .listen(3080);
 
-const client = new KonkonClient(konkonAPI);
+const client = new SeifatoClient(seifatoAPI);
 
 client.start();
 ```

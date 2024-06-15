@@ -1,4 +1,4 @@
-import { getTag, type schemas, searchTags, updateTag } from "@konkon/db";
+import { getTag, type schemas, searchTags, updateTag } from "@seifato/db";
 import type { InferSelectModel } from "drizzle-orm";
 import {
 	ActionRow,

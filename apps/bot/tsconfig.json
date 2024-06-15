@@ -1,5 +1,5 @@
 {
-	"extends": "@konkon/config/base.json",
+	"extends": "@seifato/config/base.json",
 	"compilerOptions": {
 		"lib": [
 			"ES2015"

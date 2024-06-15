@@ -1,5 +1,5 @@
-import { KonkonClient } from "./lib/structures/client";
+import { SeifatoClient } from "./lib/structures/client";
 
-const client = new KonkonClient();
+const client = new SeifatoClient();
 
 client.start();

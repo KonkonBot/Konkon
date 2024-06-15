@@ -1,5 +1,5 @@
 {
-  "name": "konkon",
+  "name": "seifato",
   "private": true,
   "workspaces": [
     "packages/*",

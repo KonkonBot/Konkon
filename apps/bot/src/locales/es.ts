@@ -1,4 +1,4 @@
-import type { schemas } from "@konkon/db";
+import type { schemas } from "@seifato/db";
 import type { CommandContext } from "seyfert";
 import type defaultLang from "./en";
 

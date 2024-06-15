@@ -1,17 +1,17 @@
-import { dbClient } from "@konkon/db";
+import { dbClient } from "@seifato/db";
 import { Client, type ParseClient, type ParseLocales, type ParseMiddlewares } from "seyfert";
 import { YunaParser } from "yunaforseyfert";
 import type defaultLang from "../../locales/en";
 import { middlewares } from "../../middlewares";
-import { KonkonContext } from "./context";
+import { SeifatoContext } from "./context";
 import PrefixManager from "./managers/prefix";
 
-export class KonkonClient extends Client {
+export class SeifatoClient extends Client {
 	prefixes: PrefixManager;
 
 	constructor() {
 		super({
-			context: KonkonContext,
+			context: SeifatoContext,
 			commands: {
 				prefix: (msg) => this.prefixes.getPrefix(msg.guildId),
 				argsParser: YunaParser(),
@@ -50,7 +50,7 @@ export class KonkonClient extends Client {
 
 declare module "seyfert" {
 	interface UsingClient extends ParseClient<Client<true>> {}
-	interface ExtendContext extends ReturnType<typeof KonkonContext> {}
+	interface ExtendContext extends ReturnType<typeof SeifatoContext> {}
 	interface RegisteredMiddlewares extends ParseMiddlewares<typeof middlewares> {}
 	interface DefaultLocale extends ParseLocales<typeof defaultLang> {}
 }

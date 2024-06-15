@@ -1,8 +1,8 @@
-import { getLocale } from "@konkon/db";
+import { getLocale } from "@seifato/db";
 import { extendContext } from "seyfert";
 import * as services from "./services";
 
-export const KonkonContext = extendContext((ctx) => {
+export const SeifatoContext = extendContext((ctx) => {
 	return {
 		developers: {
 			"@chewawi": "852970774067544165",

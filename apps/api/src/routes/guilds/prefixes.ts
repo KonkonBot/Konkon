@@ -1,4 +1,4 @@
-import { addPrefixes, getPrefixes } from "@konkon/db";
+import { addPrefixes, getPrefixes } from "@seifato/db";
 import { Elysia } from "elysia";
 import { prefixesSchema } from "#/schemas/guilds/prefixes.schema";
 

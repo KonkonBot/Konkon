@@ -1,4 +1,4 @@
-import { env } from "@konkon/config/env";
+import { env } from "@seifato/config/env";
 import { config } from "seyfert";
 
 export default config.bot({

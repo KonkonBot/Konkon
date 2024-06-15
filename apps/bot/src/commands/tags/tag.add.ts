@@ -1,4 +1,4 @@
-import { createTag } from "@konkon/db";
+import { createTag } from "@seifato/db";
 import {
 	ActionRow,
 	type CommandContext,
