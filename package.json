@@ -1,13 +1,20 @@
 {
   "name": "seifato",
   "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "start": "turbo start"
+  },
   "workspaces": [
-    "packages/*",
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "devDependencies": {
+    "@seifato/config": "workspace:*",
     "@biomejs/biome": "^1.7.3",
     "@types/bun": "latest",
+    "turbo": "latest",
     "unbuild": "^2.0.0"
   },
   "module": "index.ts",
@@ -15,8 +22,5 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "packageManager": "bun@1.1.11",
-  "dependencies": {
-    "@bogeychan/elysia-polyfills": "^0.6.4"
-  }
+  "packageManager": "bun@1.1.17"
 }

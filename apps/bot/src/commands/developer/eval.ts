@@ -1,4 +1,4 @@
-import { inspect } from "bun";
+import { inspect } from "node:util";
 import { md } from "mdbox";
 import {
 	type CommandContext,
@@ -48,18 +48,19 @@ export default class EvalCommand extends SubCommand {
 			.setAuthor({ name: author.tag, iconUrl: author.avatarURL() })
 			.setTimestamp();
 
-		let output: string | null = null;
-		let asyncCode: string = code;
+		let output: any = null;
 		let timeStart = Date.now();
 
 		try {
-			if (async) asyncCode = `(async () => { ${code} })()`;
-
 			timeStart = Date.now();
 
-			// biome-ignore lint/security/noGlobalEval: Eval command
-			output = await eval(asyncCode);
-			const inspectedOutput = inspect(output, { depth });
+			const functionBody = async ? `(async (ctx) => { ${code} })(ctx)` : `(ctx) => { ${code} }`;
+			const func = new Function("ctx", functionBody);
+			output = await func(ctx);
+
+			let inspectedOutput = inspect(output, { depth: depth ?? 0 });
+			inspectedOutput = inspectedOutput?.replaceAll(ctx.client.rest.options.token, "[APP_TOKEN]");
+
 			const timeExec = Date.now() - timeStart;
 
 			embed

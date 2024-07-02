@@ -1,15 +1,12 @@
 import { db, dbClient, schemas } from "@seifato/db";
-import { type Client, Collection } from "seyfert";
+import type { Client } from "seyfert";
+import { Collection } from "seyfert";
 
 class PrefixManager {
-	private RESERVERD_PREFIXES = ["kon"];
+	DEFAULT_PREFIXES = ["kon", "konkon"];
 	private prefixes = new Collection<string, string[]>();
-	private defaultPrefix = "k!";
-	private client: Client;
 
-	constructor(client: Client) {
-		this.client = client;
-	}
+	constructor(private client: Client) {}
 
 	public get(guildId: string) {
 		return this.prefixes.get(guildId);
@@ -17,7 +14,9 @@ class PrefixManager {
 
 	public async start() {
 		dbClient.on("notification", (msg) => {
-			const payload = JSON.parse(msg.payload ?? "");
+			if (msg.channel !== "guilds") return;
+			if (!msg.payload) return;
+			const payload = JSON.parse(msg.payload);
 			this.prefixes.set(payload.guild_id, payload.prefixes);
 		});
 
@@ -36,16 +35,14 @@ class PrefixManager {
 		}
 	}
 
-	getPrefix(guildId: string | undefined) {
-		const defaults = [`<@${this.client.botId}>`, this.defaultPrefix, ...this.RESERVERD_PREFIXES];
+	async getPrefix(guildId: string | undefined): Promise<string[]> {
+		if (!guildId) return this.DEFAULT_PREFIXES;
 
-		if (!guildId) return defaults;
+		const prefixes = this.prefixes.get(guildId);
 
-		const prefixes = this.get(guildId) || defaults;
+		if (!prefixes) return this.DEFAULT_PREFIXES;
 
-		prefixes.push(...this.RESERVERD_PREFIXES);
-
-		return prefixes;
+		return [...prefixes, ...this.DEFAULT_PREFIXES];
 	}
 }
 

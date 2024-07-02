@@ -1,0 +1,9 @@
+{
+   "name": "@seifato/services",
+   "version": "0.0.1",
+   "main": "src/index.ts",
+   "dependencies": {
+      "api": "workspace:*",
+      "@elysiajs/eden": "^1.0.14"
+   }
+}

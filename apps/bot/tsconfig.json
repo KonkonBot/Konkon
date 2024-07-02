@@ -1,25 +1,9 @@
 {
 	"extends": "@seifato/config/base.json",
 	"compilerOptions": {
-		"lib": [
-			"ES2015"
-		],
-		"outDir": "./dist",
-		"types": [
-			"node",
-			"bun-types"
-		],
-		"paths": {
-			"#lib/*": [
-				"./src/lib/*"
-			]
-		}
+		"target": "ES2015"
 	},
-	"include": [
-		"src/**/*"
-	],
-	"exclude": [
-		"node_modules",
-		"dist"
+	"references": [
+		{ "path": "../../packages/services" }
 	]
 }

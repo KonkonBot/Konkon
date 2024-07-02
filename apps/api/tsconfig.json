@@ -1,16 +1,10 @@
 {
   "extends": "@seifato/config/base.json",
   "compilerOptions": {
-    "lib": ["ESNext"],
-    "module": "CommonJS",
-    "target": "esnext",
-    "allowSyntheticDefaultImports": true,
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "types": ["node", "bun-types"],
     "paths": {
       "#/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["."],
+  "exclude": ["node_modules"]
 }

@@ -1,5 +1,8 @@
 import { Elysia } from "elysia";
-import { guildsController } from "./routes/guilds";
-import { porterController } from "./routes/porter";
+export type { Routes } from "./routes";
 
-export const apiApp = new Elysia().use(guildsController).use(porterController).listen(3080);
+export const app = new Elysia()
+	// .use(plugins)
+	.listen(3080, () => console.log("API listening on port 3080"));
+
+export type App = typeof app;

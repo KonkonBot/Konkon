@@ -2,20 +2,14 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"display": "Default",
 	"compilerOptions": {
-		"declaration": true,
-		"declarationMap": true,
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"allowImportingTsExtensions": true,
-		"preserveWatchOutput": true,
-		"skipLibCheck": true,
-		"strict": true,
-		"noEmit": true,
-		"strictNullChecks": true,
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-		"types": ["@types/bun-types"]
+    "module": "ESNext",
+    "target": "ESNext",
+    "composite": true,
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true
 	},
-	"preserveSymlinks": true,
 	"exclude": ["node_modules"]
-}
+ }

@@ -1,6 +1,5 @@
 import { getLocale } from "@seifato/db";
 import { extendContext } from "seyfert";
-import * as services from "./services";
 
 export const SeifatoContext = extendContext((ctx) => {
 	return {
@@ -9,7 +8,6 @@ export const SeifatoContext = extendContext((ctx) => {
 			"@mentallyillbassist": "788869971073040454",
 			"@kingbcats": "1125490330679115847",
 		},
-		services,
 		locale: getLocale(ctx),
 	};
 });

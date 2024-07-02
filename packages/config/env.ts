@@ -1,8 +1,8 @@
-import dotenv from "dotenv";
+import path from "node:path";
+import { config } from "dotenv";
 import { z } from "zod";
-import path from 'node:path';
 
-dotenv.config({
+config({
 	path: path.join(__dirname, "../../.env"),
 });
 

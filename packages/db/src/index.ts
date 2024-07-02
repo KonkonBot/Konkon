@@ -1,9 +1,9 @@
+import { Client } from "@neondatabase/serverless";
 import { env } from "@seifato/config/env";
-import { Pool } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-serverless";
 import * as schema from "./schema";
 
-const client = new Pool({
+const client = new Client({
 	connectionString: env.DATABASE_URI,
 });
 

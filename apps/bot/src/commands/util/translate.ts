@@ -1,9 +1,9 @@
+import { api } from "@seifato/services";
 import { md } from "mdbox";
 import {
 	type CommandContext,
 	Declare,
 	Embed,
-	LocalesT,
 	Options,
 	SubCommand,
 	createStringOption,
@@ -27,17 +27,17 @@ const translateOptions = {
 @Declare({
 	name: "translate",
 	description: "Translate text to another language",
-	contexts: ["BOT_DM", "GUILD", "PRIVATE_CHANNEL"],
-	integrationTypes: ["GUILD_INSTALL", "USER_INSTALL"],
+	contexts: ["BotDM", "Guild", "PrivateChannel"],
+	integrationTypes: ["GuildInstall", "UserInstall"],
 })
-@LocalesT(undefined, "commands.util.translate.description")
+// @LocalesT(undefined, "commands.util.translate.description")
 @Options(translateOptions)
 export default class UtilTranslateCommand extends SubCommand {
 	public async run(ctx: CommandContext<typeof translateOptions>) {
 		const { text, to, from } = ctx.options;
 		const formattedTarget = to.trim().split(/[\s,]+/g);
 
-		const { data } = await ctx.services.api.porter.translate.post({
+		const { data } = await api.porter.translate.post({
 			text,
 			to: formattedTarget,
 			from,
@@ -46,20 +46,19 @@ export default class UtilTranslateCommand extends SubCommand {
 		const translations = data?.translations ?? [];
 
 		const translationEmbed = new Embed()
-			.setTitle(`Translated from ${data?.detectedLanguage?.language ?? from} to ${to}`)
+			.setTitle(`Translated from \`${data?.detectedLanguage?.language ?? from}\` to \`${to}\``)
 			.addFields(
 				{
-					name: "Original",
-					value: md.codeBlock(text),
+					name: data?.langs[data?.detectedLanguage?.language ?? from],
+					value: md.codeBlock(text, "fix"),
 				},
 				...translations.map((t) => ({
 					name: data?.langs[t.to],
-					value: md.codeBlock(t.text),
+					value: md.codeBlock(t.text, "fix"),
 				})),
 			);
 
 		return ctx.editOrReply({
-			content: "👌 Translated",
 			embeds: [translationEmbed],
 		});
 	}

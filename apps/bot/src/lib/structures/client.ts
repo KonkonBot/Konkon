@@ -1,6 +1,7 @@
 import { dbClient } from "@seifato/db";
 import { Client, type ParseClient, type ParseLocales, type ParseMiddlewares } from "seyfert";
-import { YunaParser } from "yunaforseyfert";
+import { SSCAdapter } from "ssca";
+import { ArgsParser } from "sslp";
 import type defaultLang from "../../locales/en";
 import { middlewares } from "../../middlewares";
 import { SeifatoContext } from "./context";
@@ -13,8 +14,12 @@ export class SeifatoClient extends Client {
 		super({
 			context: SeifatoContext,
 			commands: {
-				prefix: (msg) => this.prefixes.getPrefix(msg.guildId),
-				argsParser: YunaParser(),
+				prefix: (m) => this.prefixes.getPrefix(m.guildId),
+				argsParser: (c, m, _) =>
+					new ArgsParser({ debug: true, quotes: [["`", "`"]] }).runParser(c, m) as Record<
+						string,
+						string
+					>,
 				reply: () => true,
 			},
 			allowedMentions: {
@@ -30,6 +35,9 @@ export class SeifatoClient extends Client {
 	private configureServices() {
 		this.setServices({
 			middlewares,
+			cache: {
+				adapter: new SSCAdapter(),
+			},
 			langs: {
 				default: "en",
 				aliases: {
@@ -39,11 +47,17 @@ export class SeifatoClient extends Client {
 		});
 	}
 
+	private async load() {
+		Promise.all([
+			await this.uploadCommands(),
+			await this.prefixes.start(),
+			await dbClient.connect(),
+		]);
+	}
+
 	async start() {
 		super.start().then(() => {
-			this.uploadCommands();
-			this.prefixes.start();
-			dbClient.connect();
+			this.load();
 		});
 	}
 }
@@ -53,4 +67,7 @@ declare module "seyfert" {
 	interface ExtendContext extends ReturnType<typeof SeifatoContext> {}
 	interface RegisteredMiddlewares extends ParseMiddlewares<typeof middlewares> {}
 	interface DefaultLocale extends ParseLocales<typeof defaultLang> {}
+	interface InternalOptions {
+		asyncCache: true;
+	}
 }

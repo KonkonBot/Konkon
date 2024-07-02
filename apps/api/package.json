@@ -1,18 +1,23 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "main": "src/",
-  "files": ["dist"],
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "type": "module",
   "scripts": {
-    "start": "node dist/index.cjs",
-    "dev": "bun run --watch src/index.ts",
-    "build": "tsup"
+    "start": "bun run dist/index.js",
+    "dev": "bun run src/index.ts",
+    "build": "bun build.ts"
   },
   "dependencies": {
-    "@seifato/db": "workspace:*",
+    "@bogeychan/elysia-logger": "^0.0.22",
     "@napi-rs/canvas": "^0.1.53",
-    "elysia": "^1.0.23",
-    "elysia-autoload": "^0.2.3",
-    "microsoft-translate-api": "^1.1.0"
+    "@seifato/db": "workspace:*",
+    "elysia": "latest",
+    "elysia-autoload": "latest",
+    "elysia-compress": "^1.0.1",
+    "microsoft-translate-api": "^1.1.0",
+    "ofetch": "^1.3.4",
+    "pino-pretty": "^11.2.1"
   }
 }

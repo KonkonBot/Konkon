@@ -1,6 +1,6 @@
-import { createCanvas } from "@napi-rs/canvas";
-import axios from "axios";
-import Elysia from "elysia";
+import { Image, createCanvas } from "@napi-rs/canvas";
+import { ofetch } from "ofetch";
+import type { App } from "#/index";
 import { UserInfoSchema } from "#/schemas/images/user/userinfo.schema";
 
 /**
@@ -8,17 +8,20 @@ import { UserInfoSchema } from "#/schemas/images/user/userinfo.schema";
  * TODO: move to a better place, i think :3
  */
 
-export const UserInfoCard = new Elysia().post(
-	"/userinfo",
-	async ({ body: { user } }) => {
-		const canvas = createCanvas(100, 100);
-		const ctx = canvas.getContext("2d");
+export default (app: App) =>
+	app.post(
+		"",
+		async ({ body: { user } }) => {
+			const canvas = createCanvas(100, 100);
+			const ctx = canvas.getContext("2d");
 
-		const avatar = await axios.get(user.avatarUrl);
+			const avatar = await ofetch(user.avatarUrl, { responseType: "arrayBuffer" });
+			const avatarImage = new Image();
+			avatarImage.src = Buffer.from(avatar);
 
-		ctx.drawImage(avatar.data, 0, 0, 100, 100);
+			ctx.drawImage(avatarImage, 0, 0, 100, 100);
 
-		return canvas.toBuffer("image/png");
-	},
-	UserInfoSchema,
-);
+			return canvas.toBuffer("image/png");
+		},
+		UserInfoSchema,
+	);
