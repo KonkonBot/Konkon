@@ -1,4 +1,4 @@
-import { db, dbClient, schemas } from "@seifato/db";
+import { db, client as dbClient, schema } from "@seifato/db";
 import type { Client } from "seyfert";
 import { Collection } from "seyfert";
 
@@ -26,10 +26,10 @@ class PrefixManager {
 	async loadPrefixes() {
 		const data = await db
 			.select({
-				guild_id: schemas.guilds.guildId,
-				prefixes: schemas.guilds.prefixes,
+				guild_id: schema.guilds.guildId,
+				prefixes: schema.guilds.prefixes,
 			})
-			.from(schemas.guilds);
+			.from(schema.guilds);
 		for (const { guild_id, prefixes } of data) {
 			this.prefixes.set(guild_id, prefixes);
 		}

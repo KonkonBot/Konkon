@@ -1,0 +1,7 @@
+{
+  "name": "@seifato/config",
+  "version": "0.0.1",
+  "files": [
+    "base.json"
+  ]
+}

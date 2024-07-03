@@ -1,18 +1,17 @@
 {
   "name": "@seifato/db",
   "version": "1.0.0",
-  "description": "",
-  "main": "./src/index.ts",
-  "files": ["src/**"],
+  "main": "./dist/index.cjs",
+	"types": "./dist/index.d.cts",
+  "type": "module",
+  "files": ["dist/**"],
   "scripts": {
+    "build": "tsup",
     "push": "bunx drizzle-kit migrate",
     "drop": "bunx drizzle-kit drop",
     "generate": "bunx drizzle-kit generate",
     "studio": "bunx drizzle-kit studio"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.3.1",
     "@types/pg": "^8.11.6",
@@ -20,6 +19,7 @@
     "tsup": "^8.0.2"
   },
   "dependencies": {
+    "@seifato/env": "workspace:*",
     "@seifato/config": "workspace:*",
     "@neondatabase/serverless": "^0.9.3",
     "dotenv": "^16.4.5",

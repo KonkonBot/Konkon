@@ -1,0 +1,15 @@
+{
+  "name": "@seifato/env",
+  "main": "dist/env.cjs",
+  "types": "dist/env.d.cts",
+  "type": "module",
+  "scripts": {
+    "build": "tsup"
+  },
+  "dependencies": {
+    "@seifato/config": "workspace:*",
+    "dotenv": "^16.4.5",
+    "tsup": "^8.0.2",
+    "zod": "^3.23.8"
+  }
+}

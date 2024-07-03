@@ -3,7 +3,7 @@ import { config } from "dotenv";
 import { z } from "zod";
 
 config({
-	path: path.join(__dirname, "../../.env"),
+	path: path.join(__dirname, "../../../.env"),
 });
 
 const envSchema = z.object({

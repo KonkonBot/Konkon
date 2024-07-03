@@ -1,7 +1,6 @@
 {
-	"extends": "@seifato/config/base.json",
+  "extends": "@seifato/config/base.json",
 	"compilerOptions": {
-		"lib": ["ESNext"],
 		"outDir": "./dist",
 	},
 	"include": ["."],

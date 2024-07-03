@@ -1,4 +1,4 @@
-import { getTag, type schemas, searchTags, updateTag } from "@seifato/db";
+import { getTag, type schema, searchTags, updateTag } from "@seifato/db";
 import type { InferSelectModel } from "drizzle-orm";
 import {
 	ActionRow,
@@ -21,7 +21,7 @@ const options = {
 			const select = await searchTags(interaction.getInput(), { name: true });
 			return interaction.respond(select.map((tag) => ({ name: tag.name, value: tag.name })));
 		},
-		value: async (data, ok: OKFunction<InferSelectModel<schemas.Tags>>, fail) => {
+		value: async (data, ok: OKFunction<InferSelectModel<schema.Tags>>, fail) => {
 			const tag = await getTag(data.value, data.context.guildId, data.context.author.id);
 			if (tag) ok(tag);
 			return fail("notFound");

@@ -1,4 +1,4 @@
-import { _, db, schemas } from "..";
+import { _, db, schema } from "..";
 
 export async function getGuildOrCreate(id: string) {
 	const guild = await db.query.guilds
@@ -14,7 +14,7 @@ export async function getGuildOrCreate(id: string) {
 
 export async function createGuild(guildId: string) {
 	const [guild] = await db
-		.insert(schemas.guilds)
+		.insert(schema.guilds)
 		.values({
 			guildId,
 		})
@@ -34,11 +34,11 @@ export async function addPrefixes(guildId: string, newPrefixes: string[]) {
 	prefixes.push(...newPrefixes);
 
 	const [updatedGuild] = await db
-		.update(schemas.guilds)
+		.update(schema.guilds)
 		.set({
 			prefixes: prefixes,
 		})
-		.where(_.eq(schemas.guilds.guildId, guildId))
+		.where(_.eq(schema.guilds.guildId, guildId))
 		.returning();
 
 	return updatedGuild;
@@ -50,11 +50,11 @@ export async function removePrefixes(guild_id: string, prefixes: string[]) {
 	guild.prefixes = guild.prefixes.filter((prefix) => !prefixes.includes(prefix));
 
 	const [updatedGuild] = await db
-		.update(schemas.guilds)
+		.update(schema.guilds)
 		.set({
 			prefixes: guild.prefixes,
 		})
-		.where(_.eq(schemas.guilds.guildId, guild_id))
+		.where(_.eq(schema.guilds.guildId, guild_id))
 		.returning();
 
 	return updatedGuild;

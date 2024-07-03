@@ -1,4 +1,4 @@
-import type { schemas } from "@seifato/db";
+import type { schema } from "@seifato/db";
 import type { CommandContext } from "seyfert";
 import type defaultLang from "./en";
 
@@ -62,7 +62,7 @@ export default {
 							? `Tags del usuario: <@${ownerId}>`
 							: `Tags del servidor: \`${guildName}\``;
 					},
-					fieldValue: (tag: schemas.Tags["$inferInsert"]) => {
+					fieldValue: (tag: schema.Tags["$inferInsert"]) => {
 						return `\t- Creador: <@${tag.ownerId}>\n - Usos: \`${tag.uses}\``;
 					},
 				},

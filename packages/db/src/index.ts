@@ -1,14 +1,14 @@
 import { Client } from "@neondatabase/serverless";
-import { env } from "@seifato/config/env";
+import { env } from "@seifato/env";
 import { drizzle } from "drizzle-orm/neon-serverless";
-import * as schema from "./schema";
+import * as schema from "./tables/schema";
 
-const client = new Client({
+export const client = new Client({
 	connectionString: env.DATABASE_URI,
 });
 
-const db = drizzle(client, { schema });
+export const db = drizzle(client, { schema });
 
 export * from "./utils";
 export * from "./functions";
-export { db, client as dbClient, schema as schemas };
+export { schema };

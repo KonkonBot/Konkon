@@ -1,11 +1,12 @@
-import { dbClient } from "@seifato/db";
-import { Client, type ParseClient, type ParseLocales, type ParseMiddlewares } from "seyfert";
-import { SSCAdapter } from "ssca";
-import { ArgsParser } from "sslp";
+import { client as dbClient } from "@seifato/db";
+import { Client, Command, config, RuntimeConfig, SubCommand, type ParseClient, type ParseLocales, type ParseMiddlewares } from "seyfert";
 import type defaultLang from "../../locales/en";
 import { middlewares } from "../../middlewares";
 import { SeifatoContext } from "./context";
 import PrefixManager from "./managers/prefix";
+import { HandleCommand } from "seyfert/lib/commands/handle";
+import { loadConfig } from "c12";
+import { ArgsParser } from "sslp";
 
 export class SeifatoClient extends Client {
 	prefixes: PrefixManager;
@@ -15,15 +16,17 @@ export class SeifatoClient extends Client {
 			context: SeifatoContext,
 			commands: {
 				prefix: (m) => this.prefixes.getPrefix(m.guildId),
-				argsParser: (c, m, _) =>
-					new ArgsParser({ debug: true, quotes: [["`", "`"]] }).runParser(c, m) as Record<
-						string,
-						string
-					>,
 				reply: () => true,
 			},
 			allowedMentions: {
 				parse: [],
+			},
+			async getRC() {
+				const { config: seyfertConfig } = await loadConfig({
+					configFile: "../seyfert.config.ts",
+				});
+
+				return config.bot(seyfertConfig as RuntimeConfig);
 			},
 		});
 
@@ -31,12 +34,19 @@ export class SeifatoClient extends Client {
 
 		this.configureServices();
 	}
-
+	
 	private configureServices() {
 		this.setServices({
+			handleCommand: class extends HandleCommand {
+				argsParser = (c: string, m: SubCommand | Command) =>
+					new ArgsParser({ debug: true, quotes: [["`", "`"]] }).runParser(c, m) as Record<
+						string,
+						string
+					>
+			},
 			middlewares,
 			cache: {
-				adapter: new SSCAdapter(),
+				// adapter: new SSCAdapter(),
 			},
 			langs: {
 				default: "en",

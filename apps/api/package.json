@@ -16,6 +16,7 @@
     "elysia": "latest",
     "elysia-autoload": "latest",
     "elysia-compress": "^1.0.1",
+    "esbuild-plugin-autoload": "^0.2.0",
     "microsoft-translate-api": "^1.1.0",
     "ofetch": "^1.3.4",
     "pino-pretty": "^11.2.1"

@@ -1,6 +1,7 @@
 import { type InferSelectModel, eq, sql } from "drizzle-orm";
 import type { PgInsertValue, PgUpdateSetSource } from "drizzle-orm/pg-core";
-import { db, schemas } from "..";
+import { db, schema } from "..";
+import type { Tags } from "../tables/tags";
 import { type ReturnTypeFromSelect, type SelectColumns, lower } from "../utils";
 
 /**
@@ -8,8 +9,8 @@ import { type ReturnTypeFromSelect, type SelectColumns, lower } from "../utils";
  * @param body The body of the tag.
  * @returns The created tag.
  */
-export async function createTag(body: PgInsertValue<schemas.Tags>) {
-	const [tags] = await db.insert(schemas.tags).values(body).returning();
+export async function createTag(body: PgInsertValue<Tags>) {
+	const [tags] = await db.insert(schema.tags).values(body).returning();
 
 	return tags;
 }
@@ -78,11 +79,11 @@ export async function getTag(
  * @param body The updated fields of the tag.
  * @returns The updated tag.
  */
-export async function updateTag(id: number, body: PgUpdateSetSource<schemas.Tags>) {
+export async function updateTag(id: number, body: PgUpdateSetSource<Tags>) {
 	const [updatedTag] = await db
-		.update(schemas.tags)
+		.update(schema.tags)
 		.set(body)
-		.where(eq(schemas.tags.id, id))
+		.where(eq(schema.tags.id, id))
 		.returning();
 
 	return updatedTag;
@@ -93,7 +94,7 @@ export async function updateTag(id: number, body: PgUpdateSetSource<schemas.Tags
  * @param id The ID of the tag to delete.
  */
 export async function deleteTag(id: number) {
-	await db.delete(schemas.tags).where(eq(schemas.tags.id, id));
+	await db.delete(schema.tags).where(eq(schema.tags.id, id));
 }
 
 /**
@@ -102,21 +103,20 @@ export async function deleteTag(id: number) {
  */
 export async function updateUses(id: number) {
 	await db
-		.update(schemas.tags)
+		.update(schema.tags)
 		.set({ uses: sql`${sql.raw("uses")} + 1` })
-		.where(eq(schemas.tags.id, id));
+		.where(eq(schema.tags.id, id));
 }
 
-type a = InferSelectModel<schemas.Tags>;
 /**
  * Search tags.
  * @param query The query to search for.
  * @returns The tags.
  */
-export async function searchTags<
-	T extends InferSelectModel<schemas.Tags>,
-	S extends SelectColumns<T>,
->(query: string, select?: S): Promise<ReturnTypeFromSelect<T, S>[]> {
+export async function searchTags<T extends InferSelectModel<Tags>, S extends SelectColumns<T>>(
+	query: string,
+	select?: S,
+): Promise<ReturnTypeFromSelect<T, S>[]> {
 	return (await db.query.tags.findMany({
 		columns: select,
 		where: (t, { ilike }) => ilike(t.name, `%${query}%`),

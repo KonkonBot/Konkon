@@ -2,9 +2,9 @@
   "name": "bot",
   "version": "1.0.0",
   "scripts": {
-    "dev": "bun run --watch src/index.ts",
+    "dev": "tsup --watch --onSuccess \"bun dist/index.js\"",
     "build": "tsup",
-    "start": "bun run dist/index.js"
+    "start": "bun dist/index.js"
   },
   "keywords": [],
   "author": "@chewawi",
@@ -12,9 +12,11 @@
   "dependencies": {
     "@seifato/config": "workspace:*",
     "@seifato/db": "workspace:*",
+    "@seifato/env": "workspace:*",
     "@seifato/services": "workspace:*",
     "@types/lodash": "^4.17.4",
     "api": "workspace:*",
+    "c12": "^1.11.1",
     "lodash": "^4.17.21",
     "mdbox": "^0.1.0",
     "seyfert": "github:tiramisulabs/seyfert",

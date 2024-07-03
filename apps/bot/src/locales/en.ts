@@ -1,4 +1,4 @@
-import type { schemas } from "@seifato/db";
+import type { schema } from "@seifato/db";
 import type { CommandContext } from "seyfert";
 
 export default {
@@ -59,7 +59,7 @@ export default {
 					description: (ownerId: string | undefined, guildName: string) => {
 						return ownerId ? `Tags in user: \`<@${ownerId}>\`` : `Tags in server: \`${guildName}\``;
 					},
-					fieldValue: (tag: schemas.Tags["$inferInsert"]) => {
+					fieldValue: (tag: schema.Tags["$inferInsert"]) => {
 						return `Owner: <@${tag.ownerId}> | Uses: \`${tag.uses}\``;
 					},
 				},
