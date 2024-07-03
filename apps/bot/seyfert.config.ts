@@ -12,4 +12,5 @@ export default config.bot({
 		events: "events",
 		components: "components",
 	},
+	debug: env.NODE_ENV === "development",
 });

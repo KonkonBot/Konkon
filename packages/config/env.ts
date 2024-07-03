@@ -15,6 +15,10 @@ const envSchema = z.object({
 	 * The database URI
 	 */
 	DATABASE_URI: z.string(),
+	/**
+	 * The environment the app is running in
+	 */
+	NODE_ENV: z.literal("development").or(z.literal("production")).optional(),
 });
 
 type Env = z.infer<typeof envSchema>;
