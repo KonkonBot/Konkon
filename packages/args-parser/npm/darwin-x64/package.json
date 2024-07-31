@@ -1,0 +1,31 @@
+{
+  "name": "@konkon/parser-darwin-x64",
+  "version": "0.0.1",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "parser.darwin-x64.node",
+  "files": [
+    "parser.darwin-x64.node"
+  ],
+  "description": "Konkon args parser for Seyfert",
+  "keywords": [
+    "seyfert",
+    "args-parser",
+    "konkon",
+    "parser",
+    "arg-parser"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": "https://github.com/KonkonBot/args-parser"
+}

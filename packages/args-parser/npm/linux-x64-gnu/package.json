@@ -1,0 +1,34 @@
+{
+  "name": "@konkon/parser-linux-x64-gnu",
+  "version": "0.0.1",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "parser.linux-x64-gnu.node",
+  "files": [
+    "parser.linux-x64-gnu.node"
+  ],
+  "description": "Konkon args parser for Seyfert",
+  "keywords": [
+    "seyfert",
+    "args-parser",
+    "konkon",
+    "parser",
+    "arg-parser"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": "https://github.com/KonkonBot/args-parser",
+  "libc": [
+    "glibc"
+  ]
+}

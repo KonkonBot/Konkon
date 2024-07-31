@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+
+    /* Modules */
+    "module": "commonjs",
+
+    /* Emit */
+    "declaration": true,
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["./index.ts"],
+  "exclude": ["node_modules", "__bench__", "__test__"]
+}

@@ -1,0 +1,66 @@
+{
+  "name": "@konkon/parser",
+  "version": "0.0.1",
+  "description": "Konkon args parser for Seyfert",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": "https://github.com/KonkonBot/args-parser",
+  "license": "MIT",
+  "keywords": [
+    "seyfert",
+    "args-parser",
+    "konkon",
+    "parser",
+    "arg-parser"
+  ],
+  "files": [
+    "index.d.ts",
+    "index.js"
+  ],
+  "napi": {
+    "binaryName": "parser",
+    "targets": [
+      "x86_64-apple-darwin",
+      "aarch64-apple-darwin",
+      "x86_64-unknown-linux-gnu",
+      "x86_64-pc-windows-msvc",
+      "x86_64-unknown-linux-musl",
+      "aarch64-unknown-linux-gnu",
+      "i686-pc-windows-msvc",
+      "armv7-unknown-linux-gnueabihf",
+      "aarch64-linux-android",
+      "x86_64-unknown-freebsd",
+      "aarch64-unknown-linux-musl",
+      "aarch64-pc-windows-msvc",
+      "armv7-linux-androideabi"
+    ],
+    "name": "parser"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "bench": "bun run __bench__/index.bench.ts",
+    "build": "tsc --build && napi build --platform --release --js bindings.js --dts bindings.d.ts",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "test": "bun test",
+    "version": "napi version"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "3.0.0-alpha.62",
+    "mitata": "^0.1.11",
+    "sslp": "^1.0.4",
+    "typescript": "^5.5.3",
+    "yunaforseyfert": "^0.10.3"
+  },
+  "packageManager": "pnpm@9.6.0",
+  "dependencies": {
+    "seyfert": "^1.5.0"
+  }
+}

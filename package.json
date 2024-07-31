@@ -1,0 +1,19 @@
+{
+	"name": "konkon",
+	"private": "true",
+	"scripts": {
+		"build": "turbo build",
+		"start": "turbo start"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.8.3",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"turbo": "^2.0.9"
+	},
+	"packageManager": "pnpm@9.6.0"
+}

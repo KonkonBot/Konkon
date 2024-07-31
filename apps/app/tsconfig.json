@@ -1,0 +1,10 @@
+{
+  "extends": "@konkon/ts-config/base.json",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"]
+}

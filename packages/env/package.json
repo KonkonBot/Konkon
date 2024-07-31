@@ -1,0 +1,17 @@
+{
+  "name": "@konkon/env",
+  "main": "dist/env.cjs",
+  "types": "dist/env.d.cts",
+  "type": "module",
+  "scripts": {
+    "build": "tsup"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "@konkon/ts-config": "workspace:*"
+  }
+}

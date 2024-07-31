@@ -1,0 +1,7 @@
+{
+  "name": "@konkon/ts-config",
+  "version": "1.0.0",
+  "description": "",
+  "files": ["base.json"],
+  "private": true
+}
