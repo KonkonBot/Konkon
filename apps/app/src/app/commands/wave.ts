@@ -23,7 +23,7 @@ export default class WaveCommand extends Command {
 	async run(ctx: CommandContext<typeof options>) {
 		const { user } = ctx.options;
 
-		await ctx.write({
+		return await ctx.editOrReply({
 			content: `Hello ${user?.toString() ?? "me"}!`,
 		});
 	}

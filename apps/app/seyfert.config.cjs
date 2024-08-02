@@ -6,8 +6,10 @@ module.exports = config.bot({
 	intents: ["GuildMembers", "Guilds", "MessageContent", "GuildMessages"],
 	locations: {
 		base: "src",
-		output: "dist",
-		commands: "commands",
+		output: env.NODE_ENV === "development" ? "src" : "dist",
+		commands: "/app/commands",
+		events: "/app/events",
+		langs: "/locales"
 	},
 	debug: env.NODE_ENV === "development",
 });

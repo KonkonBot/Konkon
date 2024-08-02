@@ -1,5 +1,4 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
 	"organizeImports": {
 		"enabled": true
 	},
@@ -9,6 +8,12 @@
 			"recommended": true,
 			"correctness": {
 				"noUnusedImports": "warn"
+			},
+			"suspicious": {
+				"noExplicitAny": "off"
+			},
+			"style": {
+				"noNonNullAssertion": "off"
 			}
 		}
 	}

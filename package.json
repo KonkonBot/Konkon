@@ -3,7 +3,9 @@
 	"private": "true",
 	"scripts": {
 		"build": "turbo build",
-		"start": "turbo start"
+		"start": "turbo start",
+		"dev": "turbo watch dev",
+		"konkon": "pnpm run --filter konkon"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
